@@ -34,7 +34,7 @@ let a = findGreatestSumOfSubArray(destinatedArray: [1, -2, 3, 10, -4, 7, 2, -5])
 
 /*
  2.
- title: 数组中数字出现的次数
+ title: 数组中只出现一次的两个数字
  from：剑指 Offer 56 题
  description: 一个整型数组里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。
  要求时间复杂度是 O(n)，空间复杂度是 O(1)。
