@@ -55,7 +55,7 @@ func findNumsAppearOnce(desArray: [Int]) -> [Int] {
     while exclusizeOr % 2 == 0 {
         indexOfBits += 1
     }
-    // 2. 根据异或结果，按照数组中某一位为 1 或者 0 分为两组，每组异或结果即为要找的数
+    // 3. 根据异或结果，按照数组中某一位为 1 或者 0 分为两组，每组异或结果即为要找的数
     
     for item in desArray {
         if ((item >> indexOfBits) & 1) == 1 {
