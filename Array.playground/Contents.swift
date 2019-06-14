@@ -70,4 +70,27 @@ func findNumsAppearOnce(desArray: [Int]) -> [Int] {
 let testArray = [1]
 findNumsAppearOnce(desArray: testArray)
 
+/*
+ 3.
+ title: 数组 max sum-distance
+ from：https://stackoverflow.com/questions/32067492/maximize-sum-distance-for-integer-array#
+ description: Int 数组，对 A[i] + A[j] + (i - j) 求最大值，其中 i>=j
+ solution: 即为求 A[i] + i + A[j] - j ，因此每次访问数组，都要找当前最大的 A[j] - j
+ */
+func maxRes(desArray: [Int]) -> Int {
+    var left: Int = 0
+    var res: Int = 0
+    for index in 0..<desArray.count {
+        let tem = desArray[index] + index + desArray[left] - left
+        let temp = desArray[index] * 2
+        let sum = tem > temp ? tem : temp
+        res = res > sum ? res : sum
+        if desArray[index] - index > desArray[left] - left {
+            left = index
+        }
+    }
+    
+    return res
+}
 
+let max = maxRes(desArray: [1, 0, -1, 2, 10])
