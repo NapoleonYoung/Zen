@@ -79,7 +79,7 @@ findNumsAppearOnce(desArray: testArray)
  */
 func maxRes(desArray: [Int]) -> Int {
     var left: Int = 0
-    var res: Int = 0
+    var res: Int = desArray.first! * 2
     for index in 0..<desArray.count {
         let tem = desArray[index] + index + desArray[left] - left
         let temp = desArray[index] * 2
