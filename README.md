@@ -23,3 +23,4 @@
 9. 按奇偶排序数组: https://leetcode-cn.com/problems/sort-array-by-parity/
 10. 按奇偶排序数组 II: https://leetcode-cn.com/problems/sort-array-by-parity-ii/
 11. 复写零: https://leetcode-cn.com/problems/duplicate-zeros/
+12. 玩筹码: https://leetcode-cn.com/problems/play-with-chips/

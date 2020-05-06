@@ -279,7 +279,7 @@ func sortArrayByParity(_ A: [Int]) -> [Int] {
 
 /*
 10.
-title:  按奇偶排序数组 II
+title: 按奇偶排序数组 II
 from: https://leetcode-cn.com/problems/sort-array-by-parity-ii/
 description: 给定一个非负整数数组 A， A 中一半整数是奇数，一半整数是偶数。对数组进行排序，以便当 A[i] 为奇数时，i 也是奇数；当 A[i] 为偶数时， i 也是偶数。你可以返回任何满足上述条件的数组作为答案。
 输入：[4,2,5,7]
@@ -310,7 +310,7 @@ func sortArrayByParityII(_ A: [Int]) -> [Int] {
 
 /*
 11.
-title:  复写零
+title: 复写零
 from: https://leetcode-cn.com/problems/duplicate-zeros/
 description: 给你一个长度固定的整数数组 arr，请你将该数组中出现的每个零都复写一遍，并将其余的元素向右平移。
 注意：请不要在超过该数组长度的位置写入元素。
@@ -351,5 +351,32 @@ func duplicateZeros(_ arr: inout [Int]) -> [Int] {
     }
     return arr
 }
-var ab = [0, 1]
-let aaaa = duplicateZeros(&ab)
+
+/*
+12.
+title: 玩筹码
+from: https://leetcode-cn.com/problems/play-with-chips/
+description: 数轴上放置了一些筹码，每个筹码的位置存在数组 chips 当中。你可以对 任何筹码 执行下面两种操作之一（不限操作次数，0 次也可以）：将第 i 个筹码向左或者右移动 2 个单位，代价为 0。将第 i 个筹码向左或者右移动 1 个单位，代价为 1。最开始的时候，同一位置上也可能放着两个或者更多的筹码。返回将所有筹码移动到同一位置（任意位置）上所需要的最小代价。
+
+示例 2：
+ 输入：chips = [2,2,2,3,3]
+ 输出：2
+ 解释：第四和第五个筹码移动到位置二的代价都是 1，所以最小总代价为 2
+solution:
+ 1. 阅读理解
+*/
+func minCostToMoveChips(_ chips: [Int]) -> Int {
+    var even = 0
+    var odd = 0
+    for item in chips {
+        print(item)
+        if item % 2 == 0 {
+            even += 1
+        } else {
+            odd += 1
+        }
+    }
+    return min(even, odd)
+}
+
+let aaaa = minCostToMoveChips([2, 2, 2, 3, 3])
