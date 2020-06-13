@@ -178,5 +178,105 @@ func zhiPrint2(root: TreeNode?) {
             next = 1 - next
         }
     }
+
+    func levelOrderBottom(_ root: TreeNode?) -> [[Int]] {
+        guard let root = root else {
+            return []
+        }
+
+        var stack: [[Int]] = []
+        var queue: [TreeNode] = [root]
+        while !queue.isEmpty {
+            var tempArray: [TreeNode] = []
+            var val: [Int] = []
+            for node in queue {
+                val.append(node.val)
+                if let left = node.left {
+                    tempArray.append(left)
+                }
+                if let right = node.right {
+                    tempArray.append(right)
+                }
+            }
+            queue = tempArray
+            if !stack.isEmpty {
+                stack.insert(val, at: 0)
+            } else {
+                stack.append(val)
+            }
+        }
+        return stack
+    }
     
+}
+
+func hasPathSum(_ root: TreeNode?, _ sum: Int) -> Bool {
+    guard let root = root else {
+        return false
+    }
+    var stack = [root]
+    var sumStack = [sum - root.val]
+    while !stack.isEmpty {
+        let node = stack.remove(at: 0)
+        let curSum = sumStack.remove(at: 0)
+        if curSum == 0 && node.left == nil && node.right == nil {
+            return true
+        }
+        if let right = node.right {
+            stack.append(right)
+            sumStack.append(curSum - right.val)
+        }
+        if let left = node.left {
+            stack.append(left)
+            sumStack.append(curSum - left.val)
+        }
+    }
+    return false
+}
+
+func isSameTree(_ p: TreeNode?, _ q: TreeNode?) -> Bool {
+    if p == nil && q == nil { return true }
+    if p == nil || q == nil  { return false }
+    return isSameTree(p!.left, q!.left) && isSameTree(p!.right, q!.right)
+}
+
+func isSymmetric(_ root: TreeNode?) -> Bool {
+    guard let root = root else {
+        return true
+    }
+    guard let left = root.left, let right = root.right else {
+        if root.left == nil && root.right == nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    var queue: [TreeNode] = [left, right]
+    while !queue.isEmpty {
+        if queue.count / 2 != 0 {
+            return false
+        }
+        let first = queue.removeFirst()
+        let second = queue.removeFirst()
+        if first.val != second.val {
+            return false
+        }
+        if let left = first.left, let right = second.right {
+            queue.append(left)
+            queue.append(right)
+        } else {
+            if first.left != nil || second.right != nil {
+                return false
+            }
+        }
+        if let right = first.right, let left = second.left {
+            queue.append(right)
+            queue.append(left)
+        } else {
+            if first.right != nil || second.left != nil {
+                return false
+            }
+        }
+    }
+    return true
 }
