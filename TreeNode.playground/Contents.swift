@@ -11,7 +11,7 @@ class TreeNode {
 
 class Solution {
     
-    /// 前序遍历: 栈方式
+    /// 1. 前序遍历: 栈方式
     func preorderTraversalStack(root: TreeNode?) -> [Int] {
         var node = root
         var stack = [TreeNode]()
@@ -29,17 +29,8 @@ class Solution {
         
         return res
     }
-    
-    /// 前序遍历: 递归方式
-//    func preorderTraversalRecursive(root: TreeNode?) -> [Int] {
-//        var res = [Int]()
-//        if <#condition#> {
-//            <#code#>
-//        }
-//
-//    }
-    
-    /// 中序遍历： 栈方式
+
+    /// 2. 中序遍历： 栈方式
     func inorderTraversal(root: TreeNode?) -> [Int] {
         var node = root
         var stack = [TreeNode]()
@@ -59,22 +50,7 @@ class Solution {
         return res
     }
     
-    /// 后序遍历： 栈方式
-//    func postorderTraversal(root: TreeNode?) -> [Int] {
-//        var node = root
-//        var stack = [TreeNode]()
-//        var res = [Int]()
-//
-//        while !stack.isEmpty() || node != nil {
-//            if node != nil {
-//                <#code#>
-//            } else {
-//
-//            }
-//        }
-//    }
-    
-    /// 层级遍历    
+    ///3.  层级遍历
     func levelPrint(root: TreeNode?) -> [[Int]] {
         var queue = [TreeNode]()
         var result = [[Int]]()
@@ -101,7 +77,7 @@ class Solution {
         return result
     }
     
-    /// 之字形遍历，需要使用两个栈
+    /// 4. 之字形遍历，需要使用两个栈
     func zhiPrint(root: TreeNode?) -> [[Int]] {
         var res = [[Int]]()
         guard root != nil else {
@@ -279,4 +255,33 @@ func isSymmetric(_ root: TreeNode?) -> Bool {
         }
     }
     return true
+}
+
+/*
+ 5. 111. 二叉树的最小深度:https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/
+ */
+func minDepth(_ root: TreeNode?) -> Int {
+    guard let root = root else {
+        return 0
+    }
+    var tempArray = [root]
+    var depth: Int = 1
+    while !tempArray.isEmpty {
+        var array: [TreeNode] = []
+        for node in tempArray {
+            if node.left != nil || node.right != nil {
+                if let left = node.left {
+                    array.append(left)
+                }
+                if let right = node.right {
+                    array.append(right)
+                }
+            } else {
+                return depth
+            }
+        }
+        depth += 1
+        tempArray = array
+    }
+    return depth
 }
